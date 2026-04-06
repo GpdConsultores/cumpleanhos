@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Feliz Cumpleaños Rodrigo! 🏁</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Racing+Sans+One&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Animated track lines background -->
+  <div class="track-bg">
+    <div class="track-line" style="--delay:0s; --top:10%"></div>
+    <div class="track-line" style="--delay:0.4s; --top:25%"></div>
+    <div class="track-line" style="--delay:0.8s; --top:45%"></div>
+    <div class="track-line" style="--delay:1.2s; --top:65%"></div>
+    <div class="track-line" style="--delay:1.6s; --top:80%"></div>
+    <div class="track-line" style="--delay:2.0s; --top:92%"></div>
+  </div>
+
+  <!-- Sparks -->
+  <div class="sparks" id="sparks"></div>
+
+  <!-- Checkered flag top banner -->
+  <div class="flag-banner">
+    <div class="flag-cell" id="flagCells"></div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="race-number">07</div>
+      <div class="date-label">ABRIL · 2026</div>
+
+      <h1 class="main-title">
+        <span class="line-top">¡FELIZ</span>
+        <span class="line-mid">CUMPLE</span>
+        <span class="line-bot">RODRIGO!</span>
+      </h1>
+
+      <div class="subtitle-bar">
+        <span class="flag-icon">🏁</span>
+        <span>PILOTO DE KARTING · CAMPEÓN EN LA PISTA</span>
+        <span class="flag-icon">🏁</span>
+      </div>
+
+      <div class="podium-message">
+        <p>Hoy el autódromo te pertenece.<br/>
+        Que este año sea tu mejor vuelta —<br/>
+        <strong>rápida, limpia y sin curvas cerradas.</strong></p>
+      </div>
+
+      <div class="speed-meter">
+        <div class="meter-label">VELOCIDAD DE VIDA</div>
+        <div class="meter-bar"><div class="meter-fill"></div></div>
+        <div class="meter-value">∞ km/h</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="photo-frame">
+        <div class="photo-border-glow"></div>
+        <!-- Reemplaza src con tu foto de Rodrigo (1200x1599) -->
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1599&fit=crop&crop=face"
+          alt="Rodrigo - Piloto de Karting"
+          class="pilot-photo"
+        />
+        <div class="photo-overlay">
+          <div class="overlay-number">#01</div>
+          <div class="overlay-name">RODRIGO</div>
+          <div class="overlay-title">PILOTO ESTRELLA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="stats-title">ESTADÍSTICAS DEL PILOTO</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">NUEVO AÑO</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% ADRENALINA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-num" data-target="360">0</div>
+        <div class="stat-label">DÍAS DE GLORIA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏎️</div>
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">POSICIÓN EN LA VIDA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE SECTION -->
+  <section class="message-section">
+    <div class="message-card">
+      <div class="corner-flag top-left">🏁</div>
+      <div class="corner-flag top-right">🏁</div>
+      <h2>AL MEJOR PILOTO DEL AUTÓDROMO</h2>
+      <p>
+        Como en cada carrera, tú sabes cuándo acelerar,<br/>
+        cuándo frenar y cómo tomar las curvas con precisión.<br/>
+        <strong>Esa es la clave de los campeones.</strong>
+      </p>
+      <p>
+        Que este cumpleaños sea la largada de tu mejor temporada —<br/>
+        llena de podios, velocidad y victorias que te merezces.
+      </p>
+      <div class="signature">
+        <span>Pit Lane · Autódromo de la Vida · 07.04.2026</span>
+      </div>
+      <div class="corner-flag bot-left">🏁</div>
+      <div class="corner-flag bot-right">🏁</div>
+    </div>
+  </section>
+
+  <!-- CHECKERED FLAG FOOTER -->
+  <div class="flag-footer"></div>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    // --- Checkered banner ---
+    const banner = document.querySelector('.flag-banner');
+    banner.innerHTML = '';
+    for(let i = 0; i < 80; i++){
+      const cell = document.createElement('div');
+      cell.className = 'flag-cell';
+      banner.appendChild(cell);
+    }
+
+    // --- Confetti burst on load ---
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        confetti({ particleCount: 180, spread: 100, origin: { y: 0.5 }, colors: ['#ff2d00','#fff','#111','#e8c200','#ff7700'] });
+      }, 600);
+      setTimeout(() => {
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.4, x: 0.1 }, angle: 60 });
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.4, x: 0.9 }, angle: 120 });
+      }, 1600);
+    });
+
+    // --- Sparks ---
+    const sparksContainer = document.getElementById('sparks');
+    function createSpark(){
+      const s = document.createElement('div');
+      s.className = 'spark';
+      s.style.left = Math.random()*100 + 'vw';
+      s.style.animationDuration = (1 + Math.random()*2) + 's';
+      s.style.animationDelay = (Math.random()*3) + 's';
+      sparksContainer.appendChild(s);
+      setTimeout(() => s.remove(), 5000);
+    }
+    setInterval(createSpark, 300);
+
+    // --- Animated counters ---
+    const counters = document.querySelectorAll('.stat-num');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const target = +e.target.dataset.target;
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            e.target.textContent = current;
+            if(current >= target) clearInterval(timer);
+          }, 25);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
+
+    // --- Meter animation ---
+    setTimeout(() => {
+      document.querySelector('.meter-fill').style.width = '98%';
+    }, 1000);
+  </script>
+</body>
+</html>
